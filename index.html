@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 vanilla · simple page</title>
+    <!-- This is a pure vanilla HTML/CSS page – no frameworks, no extra files. -->
+    <style>
+        /* reset & base styles – a light, pleasant starting point */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f8fafc;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* main content card – softly floating */
+        .page {
+            max-width: 950px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.1), 0 5px 12px -4px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem 2rem;
+            border: 1px solid #e9eef3;
+            transition: all 0.2s ease;
+        }
+
+        /* decorative header accent */
+        .top-ribbon {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .top-ribbon span {
+            background: #e6edf5;
+            color: #1e4b6e;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #cbd5e1;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px dotted #cbd5e1;
+            margin: 2rem 0;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+        }
+
+        .subhead {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #475569;
+            margin-bottom: 2rem;
+            border-left: 5px solid #7aa7c9;
+            padding-left: 1.2rem;
+        }
+
+        /* info grid – 3 columns on wide, stacked on mobile */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        .grid-item {
+            background: #f1f5f9;
+            border-radius: 24px;
+            padding: 1.5rem 1.2rem;
+            border: 1px solid #dde7f0;
+            transition: all 0.2s;
+        }
+
+        .grid-item:hover {
+            background: #ffffff;
+            border-color: #a0c0da;
+            box-shadow: 0 12px 20px -14px #2c3e5033;
+        }
+
+        .grid-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .grid-item p {
+            color: #334155;
+            font-size: 1rem;
+        }
+
+        /* badges / chips */
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1.8rem 0 1.2rem;
+        }
+
+        .badge {
+            background: #e1eaf1;
+            color: #1e3f5e;
+            padding: 0.4rem 1.1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #b6cde0;
+        }
+
+        .badge.primary {
+            background: #1e3f5e;
+            color: white;
+            border-color: #0b253a;
+        }
+
+        /* classic table – clean & borderless modern look */
+        .simple-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0 1.2rem;
+            font-size: 0.98rem;
+        }
+
+        .simple-table th {
+            text-align: left;
+            padding: 0.8rem 0.5rem 0.8rem 0;
+            font-weight: 600;
+            color: #0b2b44;
+            border-bottom: 2px solid #acc8e2;
+        }
+
+        .simple-table td {
+            padding: 0.75rem 0.5rem 0.75rem 0;
+            border-bottom: 1px solid #dee9f2;
+        }
+
+        .simple-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* a little vanilla button (no js, just style) */
+        .vanilla-button {
+            display: inline-block;
+            background: #0b2b44;
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.8rem 2.2rem;
+            border-radius: 50px;
+            border: none;
+            cursor: default;   /* non-interactive, just for looks – vanilla demo */
+            box-shadow: 0 4px 8px #0b2b4422;
+            transition: 0.1s;
+            text-decoration: none;
+            border: 1px solid #264e72;
+            margin: 0.5rem 0 0.25rem;
+        }
+
+        .vanilla-button:hover {
+            background: #1f405f;
+            box-shadow: 0 8px 14px -6px #0b2b4450;
+        }
+
+        /* footer / signature */
+        .footer-note {
+            margin-top: 2.8rem;
+            color: #62778b;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 1px dashed #b9cfE7;
+            padding-top: 1.8rem;
+        }
+
+        .vanilla-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: #ecf3fa;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+
+        @media (max-width: 650px) {
+            .page { padding: 1.8rem 1.2rem; }
+            h1 { font-size: 2.2rem; }
+            .info-grid { grid-template-columns: 1fr; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- tiny ribbon: "vanilla HTML" stamp -->
+        <div class="top-ribbon">
+            <span>🍦 pure vanilla</span>
+            <span>📄 no frameworks</span>
+        </div>
+
+        <!-- main header -->
+        <h1>just a vanilla<br>HTML page</h1>
+        <div class="subhead">
+            made from scratch · only one file — ready to use
+        </div>
+
+        <!-- a short intro with personality -->
+        <p style="font-size: 1.15rem; max-width: 85%;">
+            ✨ No build steps. No dependencies. No <code style="background:#ecf1f6; padding:0.2rem 0.5rem; border-radius:12px;">npm install</code>. 
+            This is the web’s native format: open it, read it, tweak it.
+        </p>
+
+        <!-- three info columns -->
+        <div class="info-grid">
+            <div class="grid-item">
+                <h3>📦 &nbsp; one file</h3>
+                <p>Everything lives inside this HTML: structure, styling, even little icons. Copy it, send it, open anywhere.</p>
+            </div>
+            <div class="grid-item">
+                <h3>🌐 &nbsp; just semantic</h3>
+                <p>Clean, readable tags. No div soup. Built with <code style="background:#d7e2ec; padding:0.2rem 0.3rem;">&lt;main&gt;</code>, <code>&lt;section&gt;</code> and modern simplicity.</p>
+            </div>
+            <div class="grid-item">
+                <h3>⚡ &nbsp; lightweight</h3>
+                <p>Less than 10 KB. No javascript, no tracking, no cookies. Refreshingly fast, even on dial‑up.</p>
+            </div>
+        </div>
+
+        <!-- a little badge collection – just because -->
+        <div class="badge-list">
+            <span class="badge primary">🍦 vanilla css</span>
+            <span class="badge">system fonts</span>
+            <span class="badge">flex & grid</span>
+            <span class="badge">mobile first</span>
+            <span class="badge">no javascript</span>
+            <span class="badge">hand‑crafted</span>
+        </div>
+
+        <!-- sample table – because sometimes you need tabular data -->
+        <h2 style="font-weight: 500; margin: 2rem 0 0.5rem 0; color:#17344f;">🍃 vanilla snack table</h2>
+        <table class="simple-table">
+            <thead>
+                <tr>
+                    <th>feature</th>
+                    <th>what you get</th>
+                    <th>good vibes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>structure</strong></td>
+                    <td>header, grid, footer, semantic blocks</td>
+                    <td>✅ semantic</td>
+                </tr>
+                <tr>
+                    <td><strong>styling</strong></td>
+                    <td>soft shadows, clean hover, modern card</td>
+                    <td>🎨 pure CSS</td>
+                </tr>
+                <tr>
+                    <td><strong>interactivity</strong></td>
+                    <td>no JS, but smooth hover states</td>
+                    <td>🖌️ just css</td>
+                </tr>
+                <tr>
+                    <td><strong>responsive</strong></td>
+                    <td>grid stacks on mobile, readable on any screen</td>
+                    <td>📱 yes</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- a subtle horizontal rule -->
+        <hr>
+
+        <!-- quote / callout (pure html) -->
+        <div style="background: #eaf1f9; border-radius: 2rem; padding: 1.6rem 2rem; margin: 2rem 0;">
+            <p style="font-size: 1.3rem; font-style: italic; font-weight: 400; color:#1b3b55;">
+            “Sometimes the most powerful thing on the web is a simple page that just works — anywhere, forever.”
+            </p>
+            <p style="margin-top: 0.8rem; color:#2d4c6c;">—  🧑‍💻  your own vanilla document</p>
+        </div>
+
+        <!-- big ol' vanilla button (non-functional, just aesthetic) -->
+        <div style="text-align: center;">
+            <span class="vanilla-button">🍦  it's just HTML  🍦</span>
+            <p style="color:#54738f; font-size:0.9rem; margin-top: 0.8rem;">(this button does nothing — that’s the beauty of it)</p>
+        </div>
+
+        <!-- footer with the 'vanilla' stamp -->
+        <div class="footer-note">
+            <span>📅  march 2026 — made on a lazy afternoon</span>
+            <span class="vanilla-logo">
+                <span>🍦</span> 100% vanilla
+            </span>
+        </div>
+
+        <!-- one more hidden detail: a comment inside – only appears in source ✨ -->
+        <!-- 
+            ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  
+            you found the secret vanilla comment!  
+            this entire page is just one file – no frameworks attached.
+            ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  ⭐  
+        -->
+    </div>
+    <!-- no scripts, no hidden trackers – the web at its simplest. -->
+</body>
+</html>
